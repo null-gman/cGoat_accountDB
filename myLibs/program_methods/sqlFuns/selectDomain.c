@@ -3,10 +3,13 @@
 static int callbackForReadForDomain(void *NotUsed, int argc, char **argv, char **azColName)
 {
     int i;
+    printBold(" | ");
     for (i = 0; i < argc; i++)
     {
-        printf("%s | ", argv[i]);
+        printYellow(argv[i]);
+        printBold(" | ");
     }
+    printf("\n");
     printf("\n");
     return 0;
 }
