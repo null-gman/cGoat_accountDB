@@ -99,7 +99,7 @@ int updateRec(const char *mainPathDBfile, const char *ID)
   setSqlCommandUpdate(&record, sqlCommand, ID);
 
 
-  printf("%s\n",sqlCommand);
+  // printf("%s\n",sqlCommand);
   sqlite3 *db;
   char *zErrMsg = 0;
   int rc;
