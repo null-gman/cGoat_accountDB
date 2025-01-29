@@ -6,12 +6,16 @@ int stringConcat(const char *str1, const char *str2, char *dest, const int buffS
 
 void strInputFormat(char *str);
 
-short charToNum(char c);
+int mystrCopy(const char * sourc, char * dest, int buff);
+
+
+
+
+//#######not used############
+
+// short charToNum(char c);
 
 // unsigned int power(int num, int rep);
 
 
-unsigned int strToNum(char *str);
-
-
-int mystrCopy(const char * sourc, char * dest, int buff);
+// unsigned int strToNum(char *str);
