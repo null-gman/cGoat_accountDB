@@ -4,8 +4,19 @@ void freeBuffAfterFgets()
 {
   int c;
   while ((c = getchar()) != '\n' && c != EOF)
-    ;
+  {
+    //net and dust
+  };
 }
+
+
+
+
+/*
+ *
+ *  all input funs will trim the string
+ *
+ */
 
 int inputStr(const char *msg, char *dest, int buff)
 {
@@ -16,8 +27,7 @@ int inputStr(const char *msg, char *dest, int buff)
     // no string inputs
     return MYMSG_NULL_STRING;
   }
-  // 5 # # # # #
-  //   1 1 1 1 0
+
   size_t len = strlen(dest);
 
   if (len > 0 && dest[len - 1] == '\n')
@@ -33,6 +43,7 @@ int inputStr(const char *msg, char *dest, int buff)
   trimStr(dest);
   return (strlen(dest) == 0) ? MYMSG_NULL_STRING : MYMSG_FULL_STRING;
 }
+
 int inputAsk(char *msg)
 {
   char answare[MIN_SIZE_INPUT_STRING];
