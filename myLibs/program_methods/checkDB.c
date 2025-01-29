@@ -1,6 +1,6 @@
 #include "../../includeMyLibs.h"
 
-int createTableAccountInDB(const char *mainPathDBfile)
+int createTableAccountInDB(const char *DB_FILE_PATH)
 {
 
     char sqlCommand[] = "CREATE TABLE account ("
@@ -17,7 +17,7 @@ int createTableAccountInDB(const char *mainPathDBfile)
     char *zErrMsg = 0;
     int rc;
 
-    rc = sqlite3_open(mainPathDBfile, &db);
+    rc = sqlite3_open(DB_FILE_PATH, &db);
 
     if (rc)
     {
@@ -40,11 +40,11 @@ int createTableAccountInDB(const char *mainPathDBfile)
     return MYMSG_DB_SUCCESS;
 }
 
-int checkDB(const char *mainPathDBfile)
+int checkDB(const char * DB_FILE_PATH)
 {
     printYellow("- checking for DB ...\n");
 
-    if (isFileExist(mainPathDBfile) == MYMSG_FILE_EXIST)
+    if (isFileExist(DB_FILE_PATH) == MYMSG_FILE_EXIST)
     {
         printGreen("- DB was found = 'OK'\n");
         return MYMSG_FOUND_DB;
@@ -58,7 +58,7 @@ int checkDB(const char *mainPathDBfile)
         endProgram(0);
     }
 
-    if (createFile(mainPathDBfile) != MYMSG_FILE_CREATED)
+    if (createFile(DB_FILE_PATH) != MYMSG_FILE_CREATED)
     {
         printRed("- error with creating the DB file = 'FALSE'\n");
         endProgram(0);
@@ -66,7 +66,7 @@ int checkDB(const char *mainPathDBfile)
 
     printGreen("- created the DB = 'OK'\n");
 
-    if (createTableAccountInDB(mainPathDBfile) != MYMSG_DB_SUCCESS)
+    if (createTableAccountInDB(DB_FILE_PATH) != MYMSG_DB_SUCCESS)
     {
         printGreen("- error with creating the DB table = 'FALSE'\n");
         return MYMSG_DB_ERROR;
