@@ -5,13 +5,14 @@
 
 */
 
-void main()
+MYMSG setRegMainPath()
 {
     enableANSI_Colors(); // for cmd to enable ANSI colot
 
-    const char myAppRegPath[] = "SOFTWARE\\onull_accountDB"; // will contain  the full Path and dataBase file in the computer files
+    const char myAppRegPath[] = "SOFTWARE\\onull_accountDB"; /* will contain  the full Path and dataBase file in the computer files*/
+    // const char myAppRegPath[] = "SOFTWARE\\onull_test"; 
 
-    if (inputAsk("by runig this program will check for 'SOFTWARE\\onull' registry and if it not found will create it") == MYMSG_FASLE)
+    if (inputAsk("by runig this program will check for 'SOFTWARE\\onull_test' registry and if it not found will create it") == MYMSG_FASLE)
     {
         endProgram(1);
     }
@@ -21,12 +22,12 @@ void main()
     if (createRegStatus == MYMSG_REG_ERROR)
     {
         printRed(">> error with create/open key !!\n");
-        endProgram(1);
+        return MYMSG_ERROR;
     }
     else if (createRegStatus == MYMSG_REG_SUCCESS)
     {
         printGreen(">> reg exist run the main program !!\n");
-        endProgram(1);
+        return MYMSG_TRUE;
     }
 
     char programDirctory[99] = {0};
@@ -45,6 +46,7 @@ void main()
         if (strCom(programDirctory, ".exit") == 1)
         {
             endProgram(1);
+            
         }
         if (isDirctory(programDirctory) != MYMSG_FASLE)
         {
@@ -54,14 +56,16 @@ void main()
     }
     printGreen("this is a valid dir\n");
 
-    if (setRegValue(myAppRegPath, "DB_PATH", programDirctory, 99) == MYMSG_REG_ERROR)
+    char keyStr[] = "DB_PATH";
+    // char keyStr[] = "testStr";
+    if (setRegValue(myAppRegPath, keyStr, programDirctory, 99) == MYMSG_REG_ERROR)
     {
         printRed("error with adding key value\n");
-        endProgram(0);
+        return MYMSG_ERROR;
     }
 
 
 
     printGreen("now open the accountDB.exe(main program) you ready to go !\n");
-    endProgram(1);
+    return MYMSG_TRUE;
 }

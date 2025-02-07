@@ -22,6 +22,19 @@ typedef struct
 } RECORD;
 
 
+// typedef struct programData
+// {
+//  char regPath[99];
+//  char regKey[99];
+
+//  char path[99];
+
+//  char DB_fileName[99];
+//  char BACKUP_fileName[99];
+
+//  char tableName[99];
+
+// } programData_t;
 
 typedef unsigned int MYMSG;
 

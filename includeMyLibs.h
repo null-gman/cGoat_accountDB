@@ -29,6 +29,7 @@
 #include "./myLibs/program_methods/_HDB_Funs.h" //all methodes that uses can uses
 
 
+MYMSG setRegMainPath();
 
 
 

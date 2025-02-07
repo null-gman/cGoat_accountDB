@@ -12,19 +12,21 @@ int getProgramPathFromReg(char *dest, int buff)
 {
   char value[buff];
 
-  // char regPathStr[]  = "SOFTWARE\\onull_accountDB";
-  char regPathStr[] = "SOFTWARE\\onull_test";
-  // char regKeyStr[] = "DB_PATH";
-  char regKeyStr[] = "testStr";
+  // char regPathStr[] = "SOFTWARE\\onull_test";
+  // char regKeyStr[] = "testStr";
+
+
+  char regPathStr[]  = "SOFTWARE\\onull_accountDB";
+  char regKeyStr[] = "DB_PATH";
+
   int status = getRegValue(regPathStr, regKeyStr, value, buff);
 
-  if (status == MYMSG_REG_ERROR)
+  if (status != MYMSG_REG_SUCCESS)
   {
-
     return MYMSG_ERROR;
   }
+  
   mystrCopy(value, dest, buff);
-
   return MYMSG_SUCCESS;
 }
 
@@ -36,11 +38,13 @@ int ConcatDir(const char *dir, const char *file, char *dest, size_t buffer)
 
   if (isDirctory(dir) == MYMSG_FASLE)
   {
+    puts("not dir");
     return MYMSG_ERROR;
   }
 
-  if (filelen + dirLen > buffer)
+  if (filelen + dirLen >= buffer)
   {
+    puts("dir over flow");
     return MYMSG_ERROR;
   }
 

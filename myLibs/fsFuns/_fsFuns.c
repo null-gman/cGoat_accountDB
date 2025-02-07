@@ -90,12 +90,15 @@ int isDirctory(const char *dir)
     if (dir[dirLen] == '\\')
     {
         stringConcat(dir, "file.file", fullDirWithFile, sizeForMYDir);
+    
     }
     else
     {
         stringConcat(dir, "\\file.file", fullDirWithFile, sizeForMYDir);
+ 
     }
 
+    puts(fullDirWithFile);
     if (createFile(fullDirWithFile) == MYMSG_ERROR)
     {
         return MYMSG_FASLE;

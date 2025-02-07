@@ -5,6 +5,7 @@
 const { exec } = require('child_process');
 const files = [" main.c"];
 
+files.push("./setRegMainPath.c");
 files.push("./myLibs/print/_print.c");
 files.push("./myLibs/win32Funs/_win32Funs.c");
 files.push("./myLibs/utilities/_utilities.c");

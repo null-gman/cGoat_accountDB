@@ -17,17 +17,23 @@ void main()
   char programDir[150]; // will contain  the full Path and dataBase file in the computer files
   if (getProgramPathFromReg(programDir, 150) == MYMSG_ERROR)
   {
-    printRed("error with geting program dirctory . \n\t"
-             "try to add it in set 'dir method'\n\t"
-             "try form regystry\n");
+    printYellow(">> there is no registry Path for program ! \n");
 
-    endProgram(0);
+    if (setRegMainPath() != MYMSG_TRUE)
+    {
+      endProgram(1);
+    }
+    if (getProgramPathFromReg(programDir, 150) == MYMSG_ERROR)
+    {
+      printYellow(">> erorr registry Path for program ! \n");
+      endProgram(1);
+    }
   }
-
 
   char programDirWithFileName[150];
 
-  if (ConcatDir(programDir, "account.db", programDirWithFileName, 150) == MYMSG_ERROR)
+  char DBFileName[] = "account.db";
+  if (ConcatDir(programDir, DBFileName, programDirWithFileName, 150) == MYMSG_ERROR)
   {
     printRed("error with createing db path!!");
     endProgram(0);
@@ -37,3 +43,13 @@ void main()
   startMethods(programDir);        // ask user what method want to run .
   endProgram(1);
 }
+
+/*
+
+TODO
+
+  put all variables in one struct (reg path , reg value , data base file name , table name , path ,
+                                   backUpFile)
+
+
+*/
