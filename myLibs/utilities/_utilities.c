@@ -1,8 +1,6 @@
 
 #include "../../includeMyLibs.h"
 
-
-
 void endProgram(int status)
 {
   printf("\npress enter to end this program ... ");
@@ -10,13 +8,15 @@ void endProgram(int status)
   status == 1 ? exit(EXIT_SUCCESS) : exit(EXIT_FAILURE);
 }
 
-
-
-
 int getProgramPathFromReg(char *dest, int buff)
 {
   char value[buff];
-  int status = getRegValue("SOFTWARE\\onull_accountDB", "DB_PATH", value, buff);
+
+  // char regPathStr[]  = "SOFTWARE\\onull_accountDB";
+  char regPathStr[] = "SOFTWARE\\onull_test";
+  // char regKeyStr[] = "DB_PATH";
+  char regKeyStr[] = "testStr";
+  int status = getRegValue(regPathStr, regKeyStr, value, buff);
 
   if (status == MYMSG_REG_ERROR)
   {
@@ -27,9 +27,6 @@ int getProgramPathFromReg(char *dest, int buff)
 
   return MYMSG_SUCCESS;
 }
-
-
-
 
 int ConcatDir(const char *dir, const char *file, char *dest, size_t buffer)
 {
